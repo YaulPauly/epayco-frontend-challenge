@@ -2,11 +2,13 @@ import Button from "@/components/atoms/Button";
 
 type ErrorStateProps = {
   message?: string;
+  description?: string;
   onRetry?: () => void;
 };
 
 export default function ErrorState({
   message = "No pudimos cargar los posts.",
+  description = "Ha ocurrido un problema al intentar obtener la lista de posts.",
   onRetry,
 }: ErrorStateProps) {
   return (
@@ -28,9 +30,7 @@ export default function ErrorState({
         </svg>
       </div>
       <div className="font-semibold text-gray-800">{message}</div>
-      <p className="text-xs text-gray-400">
-        Ha ocurrido un problema al intentar obtener la lista de posts.
-      </p>
+      <p className="text-xs text-gray-400">{description}</p>
       {onRetry ? (
         <Button onClick={onRetry}>Reintentar</Button>
       ) : null}

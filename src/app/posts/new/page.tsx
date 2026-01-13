@@ -1,32 +1,11 @@
-"use client";
+import type { Metadata } from "next";
+import NewPostClient from "@/components/pages/posts/NewPostClient";
 
-import Link from "next/link";
-import PostForm from "@/components/organisms/PostForm";
-import PostsTemplate from "@/components/templates/PostsTemplate";
-import { useRouter } from "next/navigation";
-import { useCreatePost } from "@/hooks/posts/usePostMutations";
+export const metadata: Metadata = {
+  title: "Crear post | Epayco",
+  description: "Formulario para crear un nuevo post.",
+};
 
 export default function NewPostPage() {
-  const router = useRouter();
-  const createMutation = useCreatePost();
-
-  return (
-    <PostsTemplate showHeader={false}>
-      <div className="space-y-3">
-        <Link className="text-sm font-medium text-blue-600" href="/posts">
-          &lt; Volver
-        </Link>
-        <PostForm
-          onCancel={() => router.push("/posts")}
-          submitLabel="Crear"
-          isSubmitting={createMutation.isPending}
-          onSubmit={(values) =>
-            createMutation.mutate(values, {
-              onSuccess: () => router.push("/posts?toast=created"),
-            })
-          }
-        />
-      </div>
-    </PostsTemplate>
-  );
+  return <NewPostClient />;
 }
