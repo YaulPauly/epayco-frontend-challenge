@@ -3,7 +3,9 @@ import type { ApiError } from "@/services/http/api-error";
 import { isOfflineError, isTimeoutError } from "@/services/http/api-error";
 
 const httpClient = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL:
+    process.env.NEXT_PUBLIC_API_BASE_URL ??
+    "https://jsonplaceholder.typicode.com",
   timeout: 8000,
   headers: {
     "Content-Type": "application/json",
